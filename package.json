@@ -1,12 +1,13 @@
 {
-  "name": "among-triggers",
+  "name": "@andreciornavei/among-triggers",
   "description": "A mongodb realm api client to handle and sync migrations.",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "build": "tsc && chmod +x .build/lib/index.js && npm link",
     "unlink": "npm unlink",
-    "develop": "tsx lib/index.ts"
+    "develop": "tsx lib/index.ts",
+    "publish": "npm publish --access public"
   },
   "bin": {
     "among-triggers": ".build/lib/index.js"
@@ -24,9 +25,20 @@
     "nodejs",
     "node"
   ],
-  "author": "André Ciornavei",
   "license": "ISC",
   "homepage": "https://github.com/andreciornavei/among-triggers#readme",
+  "author": {
+    "name": "André Ciornavei",
+    "email": "andre.ciornavei@gmail.com",
+    "url": "https://github.com/andreciornavei"
+  },
+  "maintainers": [
+    {
+      "name": "André Ciornavei",
+      "email": "andre.ciornavei@gmail.com",
+      "url": "https://github.com/andreciornavei"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/andreciornavei/among-triggers/issues"
   },
