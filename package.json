@@ -1,0 +1,53 @@
+{
+  "name": "among-triggers",
+  "description": "A mongodb realm api client to handle and sync migrations.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && chmod +x .build/lib/index.js && npm link",
+    "unlink": "npm unlink",
+    "develop": "tsx lib/index.ts"
+  },
+  "bin": {
+    "among-triggers": ".build/lib/index.js"
+  },
+  "keywords": [
+    "mongodb",
+    "realm",
+    "stitch",
+    "atlas",
+    "trigger",
+    "mongo",
+    "api",
+    "client",
+    "driver",
+    "nodejs",
+    "node"
+  ],
+  "author": "André Ciornavei",
+  "license": "ISC",
+  "homepage": "https://github.com/andreciornavei/among-triggers#readme",
+  "bugs": {
+    "url": "https://github.com/andreciornavei/among-triggers/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreciornavei/among-triggers.git"
+  },
+  "dependencies": {
+    "axios": "^1.1.3",
+    "deepPick": "^1.1.1",
+    "deepmerge": "^4.2.2",
+    "qs": "^6.11.0",
+    "ramda": "^0.28.0",
+    "shelljs": "^0.8.5",
+    "yargs": "^17.6.2",
+    "zod": "^3.19.1"
+  },
+  "devDependencies": {
+    "@types/node": "16",
+    "@types/yargs": "^17.0.13",
+    "tsx": "^3.12.1",
+    "typescript": "^4.8.4"
+  }
+}

@@ -1,0 +1,6 @@
+node_modules
+.env
+run.sh
+.build
+migration.json
+.DS_Store
