@@ -1,14 +1,14 @@
-import merge from "deepmerge";
+import merge from 'deepmerge';
 import {
   TriggerOriginalBaseConfigType,
   TriggerOriginalFullType,
   TriggerOriginalType,
   TriggerParsedType,
-} from "../types";
+} from '../types';
 
 export const buildOriginalTrigger = (
   trigger: TriggerParsedType,
-  triggerBase: TriggerOriginalBaseConfigType
+  triggerBase: TriggerOriginalBaseConfigType,
 ): TriggerOriginalFullType => {
   const constVariables: TriggerOriginalType = {
     name: trigger.name,

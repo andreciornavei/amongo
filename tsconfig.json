@@ -1,19 +1,16 @@
 {
   "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "preserveConstEnums": true,
-    "resolveJsonModule": true,
+    "target": "es6",
+    "module": "commonjs",
+    "removeComments": true,
+    "strict": true,
     "strictNullChecks": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "allowJs": true,
-    "target": "es5",
-    "outDir": ".build",
     "moduleResolution": "node",
-    "lib": ["es2015"],
-    "rootDir": "./"
+    "esModuleInterop": true,
+    "allowUmdGlobalAccess": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   },
-  "include": ["lib/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".history"]
 }

@@ -30,22 +30,21 @@ export type TriggerOriginalType = {
   name: string;
   config: {
     collection: string;
-    operation_types: Array<"INSERT" | "UPDATE" | "DELETE">;
+    operation_types: Array<'INSERT' | 'UPDATE' | 'DELETE'>;
     match: Object;
     full_document: boolean;
   };
 };
 
 export type TriggerOriginalFullType = Omit<
-  TriggerOriginalBaseConfigType &
-    TriggerOriginalType & { config: { full_document: boolean } },
-  "_id"
+  TriggerOriginalBaseConfigType & TriggerOriginalType & { config: { full_document: boolean } },
+  '_id'
 >;
 
 export type TriggerParsedType = {
   _id?: string;
   name: string;
   collection: string;
-  operation_types: Array<"INSERT" | "UPDATE" | "DELETE">;
+  operation_types: Array<'INSERT' | 'UPDATE' | 'DELETE'>;
   match: Object;
 };
