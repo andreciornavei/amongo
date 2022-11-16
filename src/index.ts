@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 // cli bin dependencies
-import { name, version } from './../package.json';
-import z, { ZodError } from 'zod';
-import { program } from 'commander';
+import yargs from 'yargs';
 import shell from 'shelljs';
 import { exit } from 'process';
+import z, { ZodError } from 'zod';
+import { hideBin } from 'yargs/helpers';
 import { existsSync, readFileSync } from 'fs';
 import { CliArgsType, TriggerOriginalBaseConfigType } from './types';
 // cli logic dependencies
@@ -20,23 +20,7 @@ import { findTriggersToDelete } from './functions/find-triggers-to-delete';
 import { findTriggersToUpdate } from './functions/find-triggers-to-update';
 
 // get all provided arguments
-program.name(name);
-program.version(version);
-program.option('--aws_region', 'output extra debugging');
-program.option('--aws_account_id', 'output extra debugging');
-program.option('--mongodb_group_id', 'output extra debugging');
-program.option('--mongodb_app_id', 'output extra debugging');
-program.option('--mongodb_api_key', 'output extra debugging');
-program.option('--mongodb_api_secret', 'output extra debugging');
-program.option('--mongodb_cluster_name', 'output extra debugging');
-program.option('--mongodb_service_id', 'output extra debugging');
-program.option('--mongodb_database', 'output extra debugging');
-program.option('--schema', 'output extra debugging');
-program.parse(process.argv);
-
-const args = program.opts() as CliArgsType;
-
-// const args = yargs(hideBin(process.argv)).argv as unknown as CliArgsType;
+const args = yargs(hideBin(process.argv)).argv as unknown as CliArgsType;
 const errors: Array<string> = [];
 
 // <!-- validte required arguments -->
