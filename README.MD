@@ -1,10 +1,18 @@
-# amongo <br/><small><small><small>trigger migrations among aws and mongodb</small></small></small>
+# amongo
+
+##### ___- trigger migrations among aws and mongodb___
 
 This cli package was created to help CI/CD pipelines, keeping in sync mongodb trigger declarations with mongodb platform and reflecting it on aws event-bridge partners section.
 
 ---
 
 ## # mongodb trigger declarations
+
+This cli abstract most of mongodb trigger configurations, requiring only what you realy need to know about your trigger, also it applies aws event-bridge connection by default to make the integration easier.
+
+You can find all you need to know about mongodb database-triggers on official documentation:
+
+[database triggers doc](https://www.mongodb.com/docs/atlas/app-services/triggers/database-triggers/)
 
 #### ___`migration_schema.json`___
 ```json
@@ -38,13 +46,13 @@ amongo
 --mongodb_database=${MONGODB_DATABASE}
 --schema=migration_schema.json
 ```
-After run `amongo command cli` all database trigger events will be available with `Pending` status on `https://<your-region>.console.aws.amazon.com/events/home?region=<your-region>#/partners` and ready to be validated as an event-bus ARN.
+After run `amongo command cli` all database trigger events will be available with `Pending` status on `https://<your-region>.console.aws.amazon.com/events/home?region=<your-region>#/partners` and ready to be validated with an event-bus ARN.
 
 ![image](https://www.mongodb.com/docs/atlas/app-services/images/eventbridge-partner-event-sources-table.png)
 
 ## # serverless
 
-After `amongo` command runs, it exports the trigger names as environment variables with it respective values (`aws partner name`) and store it on the `.env` files, where it can be used to continue the CI/CD pipeline being imported by serverless.yml and used to trigger a lambda function.
+After `amongo` command runs, it exports the trigger names as environment variables with it respective values (`aws partner event source name`) and store it on the `.env` files, where it can be used to continue the CI/CD pipeline being imported by serverless.yml and used to trigger lambda functions.
 
 #### ___`serverless.yml`___
 ```yml
@@ -62,7 +70,7 @@ provider:
 
 functions:
   send-order-email:
-    name: send-order-email-${self.provider.stage}
+    name: send-order-email-${self:provider.stage}
     handler: functions/send-order-email.handle
     description: "Send order e-mail when it is created on database"
     memorySize: 512
