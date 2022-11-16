@@ -80,6 +80,9 @@ functions:
       - eventBridge:
           enabled: true
           eventBus: !GetAtt MongoDbOnInserOrderEventBus.Name
+          pattern:
+            source:
+              - custom.private
 
 resources:
   Resources:
