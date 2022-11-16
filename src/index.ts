@@ -45,6 +45,9 @@ if (!args.mongodb_api_secret) {
 if (!args.mongodb_cluster_name) {
   errors.push('--mongodb_cluster_name argument required');
 }
+if (!args.mongodb_service_id) {
+  errors.push('--mongodb_service_id argument required');
+}
 if (!args.mongodb_database) {
   errors.push('--mongodb_database argument required');
 }
@@ -97,6 +100,7 @@ if (errors.length > 0) {
       config: {
         database: String(args.mongodb_database),
         clusterName: String(args.mongodb_cluster_name),
+        service_id: String(args.mongodb_service_id),
       },
       event_processors: {
         AWS_EVENTBRIDGE: {

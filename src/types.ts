@@ -7,6 +7,7 @@ export type CliArgsType = {
   mongodb_api_secret: string;
   mongodb_cluster_name: string;
   mongodb_database: string;
+  mongodb_service_id: string;
   schema: string;
 };
 
@@ -15,6 +16,7 @@ export type TriggerOriginalBaseConfigType = {
   config: {
     database: string;
     clusterName: string;
+    service_id: string;
   };
   event_processors: {
     AWS_EVENTBRIDGE: {

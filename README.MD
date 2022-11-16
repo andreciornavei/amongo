@@ -42,6 +42,7 @@ amongo
 --mongodb_api_key=${MONGODB_API_KEY}
 --mongodb_api_secret=${MONGODB_API_SECRET}
 --mongodb_cluster_name=${MONGODB_CLUSTER_NAME}
+--mongodb_service_id=${MONGODB_SERVICE_ID}
 --mongodb_database=${MONGODB_DATABASE}
 --schema=migration_schema.json
 ```
