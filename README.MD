@@ -82,7 +82,7 @@ functions:
           eventBus: !GetAtt MongoDbOnInserOrderEventBus.Name
           pattern:
             source:
-              - custom.private
+              - prefix: aws.partner/mongodb.com
 
 resources:
   Resources:
