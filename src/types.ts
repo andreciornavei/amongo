@@ -7,7 +7,6 @@ export type CliArgsType = {
   mongodb_api_secret: string;
   mongodb_cluster_name: string;
   mongodb_database: string;
-  mongodb_service_id: string;
   schema: string;
 };
 

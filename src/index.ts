@@ -18,6 +18,7 @@ import { findAllTriggers } from './functions/find-all-triggers';
 import { findTriggersToCreate } from './functions/find-triggers-to-insert';
 import { findTriggersToDelete } from './functions/find-triggers-to-delete';
 import { findTriggersToUpdate } from './functions/find-triggers-to-update';
+import { findAllServices } from './functions/find-all-services';
 
 // get all provided arguments
 const args = yargs(hideBin(process.argv)).argv as unknown as CliArgsType;
@@ -44,9 +45,6 @@ if (!args.mongodb_api_secret) {
 }
 if (!args.mongodb_cluster_name) {
   errors.push('--mongodb_cluster_name argument required');
-}
-if (!args.mongodb_service_id) {
-  errors.push('--mongodb_service_id argument required');
 }
 if (!args.mongodb_database) {
   errors.push('--mongodb_database argument required');
@@ -94,13 +92,21 @@ if (errors.length > 0) {
     // validate loaded triggers
     validateSchema.parse(currentTriggers);
 
+    // login to atlas realm
+    console.log('Authenticating to atlas mongodb');
+    const token = await authenticate(String(args.mongodb_api_key), String(args.mongodb_api_secret));
+
+    // get all services
+    const services = await findAllServices(token, String(args.mongodb_group_id), String(args.mongodb_app_id));
+    const serviceId = services?.[0]?._id as String;
+
     // mount trigger config
     const triggerBaseConfig: TriggerOriginalBaseConfigType = {
       type: 'DATABASE',
       config: {
         database: String(args.mongodb_database),
         clusterName: String(args.mongodb_cluster_name),
-        service_id: String(args.mongodb_service_id),
+        service_id: String(serviceId),
       },
       event_processors: {
         AWS_EVENTBRIDGE: {
@@ -111,10 +117,6 @@ if (errors.length > 0) {
         },
       },
     };
-
-    // login to atlas realm
-    console.log('Authenticating to atlas mongodb');
-    const token = await authenticate(String(args.mongodb_api_key), String(args.mongodb_api_secret));
 
     // get all created triggers on atlas realm
     console.log('Fetching current triggers');
