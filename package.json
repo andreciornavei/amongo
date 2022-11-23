@@ -1,7 +1,7 @@
 {
   "name": "amongo",
   "description": "A mongodb realm api client to handle and sync migrations.",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
     "watch": "rollup -c --watch",
