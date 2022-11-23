@@ -1,12 +1,11 @@
 {
   "name": "amongo",
   "description": "A mongodb realm api client to handle and sync migrations.",
-  "version": "1.0.13",
+  "version": "1.0.19",
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
     "watch": "rollup -c --watch",
-    "develop": "tsx src/index.ts",
-    "publish": "npm publish --access public"
+    "develop": "tsx src/index.ts"
   },
   "bin": {
     "amongo": "./bin/cli.js"
