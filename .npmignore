@@ -9,3 +9,6 @@ CHANGELOG.md
 main.ts
 rollup.config.js
 tsconfig.json
+run.sh
+run_schema.json
+.env

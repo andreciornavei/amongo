@@ -93,8 +93,11 @@ if (errors.length > 0) {
     validateSchema.parse(currentTriggers);
 
     // login to atlas realm
-    console.log('Authenticating to atlas mongodb');
+    console.log('Authenticating to atlas mongodb 1.0.24');
     const token = await authenticate(String(args.mongodb_api_key), String(args.mongodb_api_secret));
+
+    // validate generated token
+    if (!token) throw new Error('Token generated as undefined');
 
     // get all services
     const services = await findAllServices(token, String(args.mongodb_group_id), String(args.mongodb_app_id));
