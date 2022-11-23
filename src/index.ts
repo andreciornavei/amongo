@@ -93,7 +93,7 @@ if (errors.length > 0) {
     validateSchema.parse(currentTriggers);
 
     // login to atlas realm
-    console.log('Authenticating to atlas mongodb 1.0.24');
+    console.log('Authenticating to atlas mongodb');
     const token = await authenticate(String(args.mongodb_api_key), String(args.mongodb_api_secret));
 
     // validate generated token

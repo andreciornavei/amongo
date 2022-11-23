@@ -5,8 +5,5 @@ export const authenticate = async (apiKey: string, apiSecret: string) => {
     username: apiKey,
     apiKey: apiSecret,
   });
-
-  console.log('Response Auth ', response);
-
   return response.data.access_token;
 };
