@@ -1,0 +1,14 @@
+[
+    {
+        "name": "EVENT_ON_INSERT_ORDER",
+        "collection": "orders",
+        "operation_types": ["INSERT", "UPDATE"],
+        "match": { "fullDocument.status": "PENDING" },
+        "project": {},
+        "unordered": true,
+        "full_document": true,
+        "full_document_before_change": false,
+        "skip_catchup_events": false,
+        "tolerate_resume_errors": false
+    }
+]

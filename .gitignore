@@ -1,8 +1,6 @@
 node_modules
 .env
-run.sh
 .build
 bin
 migration.json
-run_schema.json
 .DS_Store

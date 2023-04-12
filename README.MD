@@ -20,18 +20,38 @@ You can find all you need to know about mongodb database-triggers on official do
     {
         "name": "EVENT_ON_INSERT_USER",
         "operation_types": ["INSERT"],
-        "collection": "users",
-        "match": {}
+        "collection": "users"
     },{
         "name": "EVENT_ON_INSERT_ORDER",
-        "operation_types": ["INSERT"],
         "collection": "orders",
-        "match": {}
+        "operation_types": ["INSERT"],
+        "match": { "fullDocument.status": "PENDING" },
+        "project": { "operationType": 1, "fullDocument": 1 },
+        "unordered": true,
+        "full_document": true,
+        "full_document_before_change": false,
+        "skip_catchup_events": false,
+        "tolerate_resume_errors": false
     }
 ]
 ```
 
 ## # amongo command cli
+
+### # collecting environment variables
+
+* __`AWS_REGION`__ = The aws region where you want to register yours event bridges.
+* __`AWS_ACCOUNT_ID`__ = Your AWS Account ID.
+* __`MONGODB_GROUP_ID`__ = Can be founded on URL of your mongodb dashboard After select an organization project.
+* __`MONGODB_APP_ID`__ = Can be founded on URL of your mongodb dashboard when you access your application on __`AppServices`__
+* __`MONGODB_API_KEY`__ = Can be created on your organizanization section at `Access Manager` section (The permission must to be __`Organization Owner`__, __pay attention at this part if you get error 403 after authentication!!!__)
+* __`MONGODB_API_SECRET`__ = Auto generated when you create your API KEY on your organizanization section at `Access Manager` section.
+* __`MONGODB_CLUSTER_NAME`__ = The cluster name where your database was created.
+* __`MONGODB_DATABASE`__ = The name of yor database.
+
+
+### # calling amongo coomand
+
 #### ___`cicd_script.sh`___
 ```sh
 amongo 
@@ -45,9 +65,11 @@ amongo
 --mongodb_database=${MONGODB_DATABASE}
 --schema=migration_schema.json
 ```
-After run `amongo command cli` all database trigger events will be available with `Pending` status on `https://<your-region>.console.aws.amazon.com/events/home?region=<your-region>#/partners` and ready to be validated with an event-bus ARN.
+After run `amongo command cli` all database trigger events will be available with `Pending` status on `https://<your-region>.console.aws.amazon.com/events/home?region=<your-region>#/partners` and ready to be associated to an event-bus ARN.
 
-![image](https://www.mongodb.com/docs/atlas/app-services/images/eventbridge-partner-event-sources-table.png)
+![image](./doc/assets/aws-partner-event-source.png)
+
+> _PS:_ for development, you can run the `run.sh` shell file at this project to test in dev mode ASAP. * Dont forget to setting up your credentials on environment variables. 
 
 ## # serverless
 

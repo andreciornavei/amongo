@@ -31,7 +31,12 @@ export type TriggerOriginalType = {
     collection: string;
     operation_types: Array<'INSERT' | 'UPDATE' | 'DELETE'>;
     match: Object;
+    project: Object;
+    unordered: boolean;
     full_document: boolean;
+    full_document_before_change: boolean;
+    skip_catchup_events: boolean;
+    tolerate_resume_errors: boolean;
   };
 };
 
@@ -45,5 +50,11 @@ export type TriggerParsedType = {
   name: string;
   collection: string;
   operation_types: Array<'INSERT' | 'UPDATE' | 'DELETE'>;
-  match: Object;
+  match?: Object;
+  project?: Object;
+  unordered?: boolean;
+  full_document?: boolean;
+  full_document_before_change?: boolean;
+  skip_catchup_events?: boolean;
+  tolerate_resume_errors?: boolean;
 };

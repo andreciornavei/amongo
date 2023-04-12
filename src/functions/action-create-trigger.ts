@@ -7,14 +7,16 @@ export const createTrigger = async (
   groupId: string,
   appId: string,
   trigger: TriggerParsedType,
-  triggerBaseConfig: TriggerOriginalBaseConfigType,
+  triggerBase: TriggerOriginalBaseConfigType,
 ) => {
   try {
     const response = await api.post(
       `/groups/${groupId}/apps/${appId}/triggers`,
-      buildOriginalTrigger(trigger, triggerBaseConfig),
+      buildOriginalTrigger(trigger, triggerBase),
       { headers: { Authorization: `Bearer ${token}` } },
     );
     return response.data;
-  } catch (error) {}
+  } catch (error: any) {
+    console.log('error on create trigger', trigger.name, '::', error?.response?.data || error?.message);
+  }
 };

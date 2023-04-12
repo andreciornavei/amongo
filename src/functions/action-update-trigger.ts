@@ -7,13 +7,15 @@ export const updateTrigger = async (
   groupId: string,
   appId: string,
   trigger: TriggerParsedType,
-  triggerBaseType: TriggerOriginalBaseConfigType,
+  triggerBase: TriggerOriginalBaseConfigType,
 ) => {
   try {
     await api.put(
       `/groups/${groupId}/apps/${appId}/triggers/${trigger._id}`,
-      buildOriginalTrigger(trigger, triggerBaseType),
-      { headers: { Authorization: `Bearer ${token}` } },
+      buildOriginalTrigger(trigger, triggerBase),
+      { headers: { Authorization: `Bearer ${token}`, 'Accept-Encoding': 'gzip,deflate,compress' } },
     );
-  } catch (error) {}
+  } catch (error: any) {
+    console.log('error on update trigger', trigger.name, '::', error?.response?.data || error?.message);
+  }
 };

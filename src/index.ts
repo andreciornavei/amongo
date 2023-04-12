@@ -74,19 +74,34 @@ if (errors.length > 0) {
 
     // create validation schema for mapped triggers object
     const validateSchema = z.array(
-      z.object({
-        name: z.string({ required_error: 'trigger name is required' }),
-        operation_types: z.array(z.string({ required_error: 'operation_types item is required' }), {
-          required_error: 'operation_types is required',
-        }),
-        collection: z.string({ required_error: 'collection is required' }),
-        match: z.object(
-          {},
-          {
-            required_error: 'match pattern is required, event if an empty object',
+      z
+        .object({
+          name: z.string({ required_error: 'trigger name is required' }),
+          operation_types: z
+            .array(
+              z.enum(['INSERT', 'UPDATE', 'DELETE', 'REPLACE'], {
+                required_error: 'item required',
+              }),
+              {
+                required_error: 'property required',
+              },
+            )
+            .min(1, { message: 'requires at least one operation type' }),
+          collection: z.string({ required_error: 'collection is required' }),
+          match: z.optional(z.object({})),
+          project: z.optional(z.object({})),
+          unordered: z.optional(z.boolean()),
+          full_document: z.optional(z.boolean()),
+          full_document_before_change: z.optional(z.boolean()),
+          tolerate_resume_errors: z.optional(z.boolean()),
+          skip_catchup_events: z.optional(z.boolean()),
+        })
+        .refine(
+          (payload) => {
+            return !(payload.full_document_before_change === true && payload.full_document === false);
           },
+          { message: '"full_document_before_change" cannot be TRUE while "full_document" is FALSE' },
         ),
-      }),
     );
 
     // validate loaded triggers

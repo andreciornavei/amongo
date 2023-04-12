@@ -6,5 +6,7 @@ export const deleteTrigger = async (token: string, groupId: string, appId: strin
     await api.delete(`/groups/${groupId}/apps/${appId}/triggers/${trigger._id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-  } catch (error) {}
+  } catch (error: any) {
+    console.log('error on delete trigger', trigger.name, '::', error?.response?.data || error?.message);
+  }
 };

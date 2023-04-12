@@ -14,9 +14,15 @@ export const buildOriginalTrigger = (
     name: trigger.name,
     config: {
       collection: trigger.collection,
-      match: trigger.match,
+      match: trigger.match || {},
+      project: trigger.project || {},
       operation_types: trigger.operation_types,
-      full_document: true,
+      unordered: trigger.unordered !== undefined ? trigger.unordered : true,
+      full_document: trigger.full_document !== undefined ? trigger.full_document : true,
+      full_document_before_change:
+        trigger.full_document_before_change !== undefined ? trigger.full_document_before_change : false,
+      tolerate_resume_errors: trigger.tolerate_resume_errors !== undefined ? trigger.tolerate_resume_errors : false,
+      skip_catchup_events: trigger.skip_catchup_events !== undefined ? trigger.skip_catchup_events : false,
     },
   };
   return merge(constVariables, triggerBase);
