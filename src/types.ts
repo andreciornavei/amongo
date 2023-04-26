@@ -27,6 +27,7 @@ export type TriggerOriginalBaseConfigType = {
 export type TriggerOriginalType = {
   _id?: string;
   name: string;
+  disabled?: boolean;
   config: {
     collection: string;
     operation_types: Array<'INSERT' | 'UPDATE' | 'DELETE'>;
@@ -48,6 +49,7 @@ export type TriggerOriginalFullType = Omit<
 export type TriggerParsedType = {
   _id?: string;
   name: string;
+  disabled?: boolean;
   collection: string;
   operation_types: Array<'INSERT' | 'UPDATE' | 'DELETE'>;
   match?: Object;

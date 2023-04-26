@@ -1,5 +1,4 @@
 import { createHmac } from 'crypto';
-import { equals } from 'ramda';
 import qs from 'qs';
 
 const HASH_COMPARE = 'ABCDEF123456789ABCDEF123456789FF';

@@ -12,6 +12,7 @@ export const buildOriginalTrigger = (
 ): TriggerOriginalFullType => {
   const constVariables: TriggerOriginalType = {
     name: trigger.name,
+    disabled: trigger.disabled !== undefined ? trigger.disabled : false,
     config: {
       collection: trigger.collection,
       match: trigger.match || {},

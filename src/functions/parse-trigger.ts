@@ -5,6 +5,7 @@ export const parseTriggers = (originalTriggers: TriggerOriginalType[]): TriggerP
   return deepPick(originalTriggers, [
     '_id',
     'name',
+    'disabled',
     'config.match',
     'config.collection',
     'config.operation_types',
@@ -18,6 +19,7 @@ export const parseTriggers = (originalTriggers: TriggerOriginalType[]): TriggerP
     (originalTrigger: TriggerOriginalType): TriggerParsedType => ({
       _id: originalTrigger._id,
       name: originalTrigger.name,
+      disabled: originalTrigger.disabled,
       match: originalTrigger.config.match,
       project: originalTrigger.config.project,
       unordered: originalTrigger.config.unordered,

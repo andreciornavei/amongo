@@ -90,6 +90,7 @@ if (errors.length > 0) {
           collection: z.string({ required_error: 'collection is required' }),
           match: z.optional(z.object({})),
           project: z.optional(z.object({})),
+          disabled: z.optional(z.boolean()),
           unordered: z.optional(z.boolean()),
           full_document: z.optional(z.boolean()),
           full_document_before_change: z.optional(z.boolean()),

@@ -1,10 +1,11 @@
 [
     {
-        "name": "EVENT_ON_INSERT_ORDER",
+        "name": "TESTE_DISABLED",
         "collection": "orders",
         "operation_types": ["INSERT", "UPDATE"],
         "match": { "fullDocument.status": "PENDING" },
         "project": {},
+        "disabled": false,
         "unordered": true,
         "full_document": true,
         "full_document_before_change": false,

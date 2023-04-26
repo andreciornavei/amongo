@@ -6,6 +6,7 @@ import { parseTriggers } from './parse-trigger';
 export const findTriggersToUpdate = (onlineTriggers: TriggerOriginalType[], deployTriggers: TriggerParsedType[]) => {
   const compareFields = [
     'name',
+    'disabled',
     'operation_types',
     'match',
     'project',
