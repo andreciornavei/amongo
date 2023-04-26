@@ -1,4 +1,6 @@
+// import { EJSON } from 'bson';
 import merge from 'deepmerge';
+import { encodeProjection } from './codec-projection';
 import {
   TriggerOriginalBaseConfigType,
   TriggerOriginalFullType,
@@ -16,7 +18,7 @@ export const buildOriginalTrigger = (
     config: {
       collection: trigger.collection,
       match: trigger.match || {},
-      project: trigger.project || {},
+      project: encodeProjection(trigger.project),
       operation_types: trigger.operation_types,
       unordered: trigger.unordered !== undefined ? trigger.unordered : true,
       full_document: trigger.full_document !== undefined ? trigger.full_document : true,

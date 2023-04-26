@@ -1,4 +1,5 @@
 import deepPick from 'deepPick';
+import { decodeProjection } from './codec-projection';
 import { TriggerParsedType, TriggerOriginalType } from '../types';
 
 export const parseTriggers = (originalTriggers: TriggerOriginalType[]): TriggerParsedType[] => {
@@ -21,7 +22,7 @@ export const parseTriggers = (originalTriggers: TriggerOriginalType[]): TriggerP
       name: originalTrigger.name,
       disabled: originalTrigger.disabled,
       match: originalTrigger.config.match,
-      project: originalTrigger.config.project,
+      project: decodeProjection(originalTrigger.config.project),
       unordered: originalTrigger.config.unordered,
       collection: originalTrigger.config.collection,
       full_document: originalTrigger.config.full_document,
